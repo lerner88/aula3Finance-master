@@ -1,0 +1,28 @@
+<!--
+  Generated template for the ContasAddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastro de Contas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="conta.DESCRICAO" name="DESCRICAO"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button block (click)="salvar()">Salvar</button>
+
+</ion-content>

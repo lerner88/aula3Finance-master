@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Lançamentos
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addLancamento()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="navigation" padding>
+    <ion-icon name="arrow-dropleft-circle" class="nav-left" (click)="setPreviousMonth()"></ion-icon>
+    <span class="text-center">{{mes}}/{{referencia_ano}}</span>
+    <ion-icon name="arrow-dropright-circle" class="nav-right" (click)="setNextMonth()"></ion-icon>
+  </div>
+  <ion-item-divider color="light">Extrato</ion-item-divider>
+  <ion-list no-lines>
+    <ion-item class="lancamento">
+      Créditos
+      <small class="valor cred" style="margin: 0;">R$ {{credito}}</small>
+    </ion-item>
+    <ion-item class="lancamento">
+      Débitos
+      <small class="valor deb" style="margin: 0;">R$ {{debito}}</small>
+    </ion-item>
+    <ion-item class="lancamento">
+      Saldo
+      <small class="valor cred saldo" style="margin: 0;">R$ {{saldo}}</small>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item-divider color="light">Créditos</ion-item-divider>
+    <ion-item-sliding *ngFor="let lanc of listLancCred">
+      <ion-item class="lancamento" (click)="edit(lanc.ID)">
+        <ion-title>{{lanc.DESCRICAO}}</ion-title>
+        <div class="info">
+          <small>{{lanc.REFERENCIA_MES+1}}/{{lanc.REFERENCIA_ANO}}</small>
+          <br>
+          <small>{{lanc.CONTA_DESCRICAO}}</small>
+        </div>
+        <small class="pago" [hidden]="lanc.PAGO != 'true'">Pago</small>
+        <small class="valor cred">R$ {{lanc.VALOR}}</small>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="secondary" (click)="pago(lanc.ID)" [hidden]="lanc.PAGO == 'true'">Pago</button>
+        <button ion-button color="danger" (click)="delete(lanc.ID)">Excluir</button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <!-- <ion-item-sliding>
+      <ion-item class="lancamento">
+        <ion-title>Salário</ion-title>
+        <div class="info">
+          <small>10/2018</small>
+          <br>
+          <small>Salário</small>
+        </div>
+        <small class="valor cred">R$ 100,00</small>
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="secondary" (click)="pago(lanc.ID)">Pago</button>
+        <button ion-button color="danger" (click)="delete(lanc.ID)">Excluir</button>
+      </ion-item-options>
+    </ion-item-sliding> -->
+  </ion-list>
+  <ion-list>
+    <ion-item-divider color="light">Débitos</ion-item-divider>
+    <ion-item-sliding *ngFor="let lanc of listLancDeb">
+      <ion-item class="lancamento" (click)="edit(lanc.ID)">
+        <ion-title>{{lanc.DESCRICAO}}</ion-title>
+        <div class="info">
+          <small>{{lanc.REFERENCIA_MES+1}}/{{lanc.REFERENCIA_ANO}}</small>
+          <br>
+          <small>{{lanc.CONTA_DESCRICAO}}</small>
+        </div>
+        <small class="pago" [hidden]="lanc.PAGO != 'true'">Pago</small>
+        <small class="valor deb">R$ {{lanc.VALOR}}</small>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="secondary" (click)="pago(lanc.ID)" [hidden]="lanc.PAGO == 'true'">Pago</button>
+        <button ion-button color="danger" (click)="delete(lanc.ID)">Excluir</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block (click)="duplicar()">Duplicar Mês ></button>
+  </div>
+</ion-content>

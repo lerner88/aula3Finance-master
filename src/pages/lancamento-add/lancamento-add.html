@@ -1,0 +1,65 @@
+<!--
+  Generated template for the LancamentoAddPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="lancamento.DESCRICAO" name="DESCRICAO"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Valor (R$)</ion-label>
+      <ion-input [(ngModel)]="lancamento.VALOR" name="VALOR" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Referência</ion-label>
+      <ion-select [(ngModel)]="lancamento.REFERENCIA_MES" name="REFERENCIA_MES" submitText="Ok" cancelText="Cancelar">
+        <ion-option value="0">Janeiro</ion-option>
+        <ion-option value="1">Fevereiro</ion-option>
+        <ion-option value="2">Março</ion-option>
+        <ion-option value="3">Abril</ion-option>
+        <ion-option value="4">Maio</ion-option>
+        <ion-option value="5">Junho</ion-option>
+        <ion-option value="6">Julho</ion-option>
+        <ion-option value="7">Agosto</ion-option>
+        <ion-option value="8">Setembro</ion-option>
+        <ion-option value="9">Outubro</ion-option>
+        <ion-option value="10">Novembro</ion-option>
+        <ion-option value="11">Dezembro</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="lancamento.REFERENCIA_ANO" name="REFERENCIA_ANO">
+        <ion-option *ngFor="let ano of listYears" value="{{ano}}">{{ano}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Conta</ion-label>
+      <ion-select [(ngModel)]="lancamento.CONTA" name="CONTA" submitText="Ok" cancelText="Cancelar">
+        <ion-option *ngFor="let conta of contas" value="{{conta.ID}}">{{conta.DESCRICAO}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="lancamento.TIPO" name="TIPO" submitText="Ok" cancelText="Cancelar">
+        <ion-option value="C">Crédito</ion-option>
+        <ion-option value="D">Débito</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pago</ion-label>
+      <ion-checkbox [(ngModel)]="lancamento.PAGO" name="PAGO" checked="true"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div padding>
+    <button ion-button color="primary" block (click)="salvar()">Salvar</button>
+  </div>
+</ion-content>

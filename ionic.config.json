@@ -1,0 +1,8 @@
+{
+  "name": "aula3Finance",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "31a249e1"
+}
